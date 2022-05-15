@@ -61,3 +61,5 @@ temp
 
 # build output directory
 build
+
+.idea

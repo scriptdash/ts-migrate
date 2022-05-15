@@ -26,7 +26,7 @@ const tsIgnorePlugin: Plugin<Options> = {
 
 export default tsIgnorePlugin;
 
-const TS_IGNORE_MESSAGE_LIMIT = 50;
+const TS_IGNORE_MESSAGE_LIMIT = 100;
 
 function getTextWithIgnores(
   sourceFile: ts.SourceFile,
@@ -50,12 +50,12 @@ function getTextWithIgnores(
       .filter(Boolean);
     const message = messageLines[messageLines.length - 1];
     const errorExpression = options.useTsIgnore ? 'ts-ignore' : `ts-expect-error`;
-    const tsIgnoreCommentText = `@${errorExpression} ts-migrate(${code}) FIXME: ${
+    const tsIgnoreCommentText = `@${errorExpression} TS(${code}): ${
       message.length > TS_IGNORE_MESSAGE_LIMIT
         ? `${message.slice(
             0,
             TS_IGNORE_MESSAGE_LIMIT,
-          )}... Remove this comment to see the full error message`
+          )}... (Delete me to see the full error)`
         : message
     }`;
     if (!isIgnored[diagnosticLine]) {
