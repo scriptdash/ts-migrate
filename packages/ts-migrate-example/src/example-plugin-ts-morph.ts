@@ -10,11 +10,6 @@ const examplePluginTsMorph: Plugin<Options> = {
 
     functionDeclarations.forEach((functionDeclaration) => {
       const name = functionDeclaration.getName();
-
-      // add a jsDoc comment before the function
-      functionDeclaration.addJsDoc({
-        description: `This is the function ${name}`,
-      });
     });
 
     sourceFile.formatText({

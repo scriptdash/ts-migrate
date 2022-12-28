@@ -163,8 +163,8 @@ function hoistStaticClassProperties(
       if (classDeclaration.members.length === 0) {
         const updatedClassDeclaration = ts.factory.updateClassDeclaration(
           classDeclaration,
-          classDeclaration.decorators,
-          classDeclaration.modifiers,
+          ts.getDecorators(classDeclaration),
+          ts.getModifiers(classDeclaration),
           classDeclaration.name,
           classDeclaration.typeParameters,
           classDeclaration.heritageClauses,

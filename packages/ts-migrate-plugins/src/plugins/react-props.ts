@@ -219,8 +219,8 @@ function updatePropTypes(
             ts.EmitHint.Unspecified,
             ts.factory.updateParameterDeclaration(
               propsParam,
-              propsParam.decorators,
-              propsParam.modifiers,
+              ts.getDecorators(propsParam),
+              ts.getModifiers(propsParam),
               propsParam.dotDotDotToken,
               propsParam.name,
               propsParam.questionToken,

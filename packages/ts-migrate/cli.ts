@@ -11,7 +11,6 @@ import {
   eslintFixPlugin,
   explicitAnyPlugin,
   hoistClassStaticsPlugin,
-  jsDocPlugin,
   memberAccessibilityPlugin,
   reactClassLifecycleMethodsPlugin,
   reactClassStatePlugin,
@@ -32,7 +31,6 @@ const availablePlugins = [
   eslintFixPlugin,
   explicitAnyPlugin,
   hoistClassStaticsPlugin,
-  jsDocPlugin,
   memberAccessibilityPlugin,
   reactClassLifecycleMethodsPlugin,
   reactClassStatePlugin,
@@ -112,10 +110,6 @@ yargs
           '$0 migrate /frontend/foo -s "bar/**/*" -s "node_modules/**/*.d.ts"',
           'Migrate all the files in /frontend/foo/bar, accounting for ambient types from node_modules.',
         )
-        .example(
-          '$0 migrate /frontend/foo --plugin jsdoc',
-          'Migrate JSDoc comments for all the files in /frontend/foo',
-        )
         .require(['folder']),
     async (args) => {
       const rootDir = path.resolve(process.cwd(), args.folder);
@@ -129,13 +123,7 @@ yargs
           process.exit(1);
           return;
         }
-        if (plugin === jsDocPlugin) {
-          const anyAlias = args.aliases === 'tsfixme' ? '$TSFixMe' : undefined;
-          const typeMap = typeof args.typeMap === 'string' ? JSON.parse(args.typeMap) : undefined;
-          config = new MigrateConfig().addPlugin(jsDocPlugin, { anyAlias, typeMap });
-        } else {
-          config = new MigrateConfig().addPlugin(plugin, {});
-        }
+        config = new MigrateConfig().addPlugin(plugin, {});
       } else {
         const airbnbAnyAlias = '$TSFixMe';
         const airbnbAnyFunctionAlias = '$TSFixMeFunction';

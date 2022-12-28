@@ -60,7 +60,7 @@
   "license": "MIT",
   "dependencies": {
     "pretty-ms": "^7.0.1",
-    "ts-morph": "^13.0.3",
+    "ts-morph": "^17.0.1",
     "updatable-log": "^0.2.0"
   },
   "gitHead": "7acf6067f15c9bb367cda9c47fcfb4203dcc54f3",
